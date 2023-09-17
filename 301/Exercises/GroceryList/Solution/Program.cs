@@ -1,6 +1,8 @@
 ﻿using GroceryList;
 
 ListManager manager = new ListManager();
+Console.WriteLine("Welcome to the Grocery List Manager!");
+
 while (true)
 {
     int choice = ConsoleIO.DisplayMenu();

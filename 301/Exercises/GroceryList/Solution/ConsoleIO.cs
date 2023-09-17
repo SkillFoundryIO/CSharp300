@@ -12,6 +12,7 @@
             Console.WriteLine("2. Remove Item");
             Console.WriteLine("3. Display Items");
             Console.WriteLine("4. Exit");
+            Console.WriteLine();
 
             do
             {
