@@ -1,6 +1,9 @@
 ﻿using RestaurantQueue;
 
 PartyManager manager = new PartyManager();
+
+Console.WriteLine("Welcome to the Restaurant Guest Check-In Manager!");
+
 while (true)
 {
     int choice = ConsoleIO.DisplayMenu();
