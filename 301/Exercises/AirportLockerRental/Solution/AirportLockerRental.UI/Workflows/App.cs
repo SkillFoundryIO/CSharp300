@@ -31,7 +31,7 @@ namespace AirportLockerRental.UI.Workflows
 
                     if(choice == 1)
                     {
-                        LockerContents contents = lockerStorage.Get(lockerNumber);
+                        LockerContents? contents = lockerStorage.Get(lockerNumber);
                         ConsoleIO.DisplayLockerContents(contents);
                     }
                     else if(choice == 2)
@@ -49,7 +49,7 @@ namespace AirportLockerRental.UI.Workflows
                     }
                     else
                     {
-                        LockerContents contents = lockerStorage.Remove(lockerNumber);
+                        LockerContents? contents = lockerStorage.Remove(lockerNumber);
                         if(contents == null)
                         {
                             Console.WriteLine($"Locker {lockerNumber} is not currently rented.");

@@ -14,7 +14,7 @@ namespace AirportLockerRental.UI.Storage
             Capacity = capacity;
         }
 
-        public LockerContents Remove(int number)
+        public LockerContents? Remove(int number)
         {
             if (_storage.ContainsKey(number))
             {
@@ -26,7 +26,7 @@ namespace AirportLockerRental.UI.Storage
             return null;
         }
 
-        public LockerContents Get(int number)
+        public LockerContents? Get(int number)
         {
             if(_storage.ContainsKey(number))
             {
@@ -38,7 +38,7 @@ namespace AirportLockerRental.UI.Storage
 
         public bool IsAvailable(int number)
         {
-            return _storage.ContainsKey(number);
+            return !_storage.ContainsKey(number);
         }
 
         public void List()

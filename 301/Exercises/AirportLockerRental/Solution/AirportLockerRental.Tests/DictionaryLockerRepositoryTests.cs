@@ -4,14 +4,14 @@ using NUnit.Framework;
 
 namespace AirportLockerRental.Tests
 {
-    public class ArrayLockerRepositoryTests
+    public class DictionaryLockerRepositoryTests
     {
         private ILockerRepository _repo;
 
         [SetUp]
         public void Initialize()
         {
-            _repo = new ArrayLockerRepository(10);
+            _repo = new DictionaryLockerRepository(10);
 
             // add a few sample records
             _repo.Add(new LockerContents
@@ -50,13 +50,22 @@ namespace AirportLockerRental.Tests
         }
 
         [Test]
-        public void CannotAddOutOfRange()
+        public void CannotAddOverCapacity()
         {
-            Assert.IsFalse(_repo.Add(new LockerContents
+            var small = new DictionaryLockerRepository(1);
+
+            Assert.IsTrue(small.Add(new LockerContents
             {
-                LockerNumber = 20,
-                RenterName = "Baddy McOverflowFace",
-                Description = "Forbidden items"
+                LockerNumber = 1,
+                RenterName = "Testy Tester",
+                Description = "Things and Stuff"
+            }));
+
+            Assert.IsFalse(small.Add(new LockerContents
+            {
+                LockerNumber = 2,
+                RenterName = "Stacked Overflow",
+                Description = "Too many things"
             }));
         }
 

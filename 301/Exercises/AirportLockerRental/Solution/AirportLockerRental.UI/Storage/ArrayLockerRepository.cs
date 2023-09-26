@@ -15,7 +15,7 @@ namespace AirportLockerRental.UI.Storage
             _storage = new LockerContents[capacity];
         }
 
-        public LockerContents Remove(int number)
+        public LockerContents? Remove(int number)
         {
             if (_storage[number-1] != null)
             {
@@ -27,7 +27,7 @@ namespace AirportLockerRental.UI.Storage
             return null;
         }
 
-        public LockerContents Get(int number)
+        public LockerContents? Get(int number)
         {
             return _storage[number - 1];
         }

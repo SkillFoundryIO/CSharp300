@@ -10,7 +10,7 @@ namespace AirportLockerRental.UI.Actions
             do
             {
                 Console.Write(prompt);
-                string input = Console.ReadLine();
+                string? input = Console.ReadLine();
 
                 if(!string.IsNullOrEmpty(input))
                 {
@@ -75,13 +75,16 @@ namespace AirportLockerRental.UI.Actions
             } while (true);
         }
 
-        public static void DisplayLockerContents(LockerContents dto)
+        public static void DisplayLockerContents(LockerContents? dto)
         {
+            if(dto != null)
+            {
                 Console.WriteLine("=====================================");
                 Console.WriteLine($"Locker #: {dto.LockerNumber}");
                 Console.WriteLine($"Renter Name: {dto.RenterName}");
                 Console.WriteLine($"Contents: {dto.Description}");
                 Console.WriteLine("=====================================");
+            }
         }
 
         public static int GetLockerNumber(int capacity)
@@ -144,8 +147,8 @@ namespace AirportLockerRental.UI.Actions
         {
             LockerContents contents = new LockerContents();
 
-            contents.RenterName = ConsoleIO.GetRequiredString("Enter your name: ");
-            contents.Description = ConsoleIO.GetRequiredString("Enter the item you want to store in the locker: ");
+            contents.RenterName = GetRequiredString("Enter your name: ");
+            contents.Description = GetRequiredString("Enter the item you want to store in the locker: ");
 
             return contents;
         }
