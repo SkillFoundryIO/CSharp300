@@ -5,21 +5,21 @@ namespace AirportLockerRental.UI.Storage
 {
     public class ArrayLockerRepository : ILockerRepository
     {
-        private LockerContents[] _storage;
+        private LockerContents?[] _storage;
 
         public int Capacity { get; set; }
 
         public ArrayLockerRepository(int capacity)
         {
             Capacity = capacity;
-            _storage = new LockerContents[capacity];
+            _storage = new LockerContents?[capacity];
         }
 
         public LockerContents? Remove(int number)
         {
             if (_storage[number-1] != null)
             {
-                LockerContents contents = _storage[number - 1];
+                LockerContents? contents = _storage[number - 1];
                 _storage[number - 1] = null;
                 return contents;
             }
