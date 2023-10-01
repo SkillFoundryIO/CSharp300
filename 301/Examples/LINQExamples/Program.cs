@@ -1,7 +1,7 @@
 ﻿using LINQExamples;
 // uncomment the method call(s) you would like to run
 
-// MethodSyntax.WhereExample();
+MethodSyntax.WhereExample();
 // MethodSyntax.WhereExample2();
 // MethodSyntax.OrderingDescending();
 // MethodSyntax.OrderingAscending();
@@ -16,4 +16,11 @@
 // MethodSyntax.SkipTake();
 // MethodSyntax.Grouping();
 // MethodSyntax.SelectCSV();
-MethodSyntax.SelectAnonymous();
+// MethodSyntax.SelectAnonymous();
+
+// QuerySyntax.WhereExample();
+// QuerySyntax.OrderByExample();
+// QuerySyntax.SingleValueExample();
+// QuerySyntax.Grouping();
+// QuerySyntax.SelectCSV();
+// QuerySyntax.SelectAnonymous();

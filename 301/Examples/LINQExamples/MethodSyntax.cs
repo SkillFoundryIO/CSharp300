@@ -6,7 +6,9 @@
 
         public static void WhereExample()
         {
-            var activeEmployees = _employees.Where(e => e.TerminationDate == null);
+            var activeEmployees = _employees
+                .Where(e => e.TerminationDate == null);
+            
             ConsoleIO.PrintEmployees(activeEmployees, "Active Employees");
         }
 
@@ -144,6 +146,14 @@
             {
                 Console.WriteLine($"{item.Value} - {item.Text}");
             }
+        }
+
+        public static void Conversions()
+        {
+            var list = _employees.Where(e => e.Department == "IT").ToList();
+            var array = _employees.Where(e => e.Department == "IT").ToArray();
+            var dictionary = _employees.Where(e => e.Department == "IT")
+                .ToDictionary(e => e.BadgeID);
         }
     }
 }
