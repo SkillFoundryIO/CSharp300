@@ -36,13 +36,12 @@
         public static void Grouping()
         {
             var departmentGroups = from e in _employees
-                                   group e by e.Department into g
-                                   select new { g.Key, Items = g };
+                                   group e by e.Department;
 
             foreach (var group in departmentGroups)
             {
                 Console.WriteLine($"Department: {group.Key}");
-                foreach (var employee in group.Items)
+                foreach (var employee in group)
                 {
                     Console.WriteLine(
                         $"\t{employee.LastName}, {employee.FirstName}");
