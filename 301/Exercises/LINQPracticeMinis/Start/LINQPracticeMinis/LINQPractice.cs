@@ -2,129 +2,129 @@
 {
     public class LINQPractice
     {
-        private List<Luchador> _luchadors;
+        private List<Luchador> _luchadores;
 
-        public LINQPractice(List<Luchador> luchadors)
+        public LINQPractice(List<Luchador> luchadores)
         {
-            _luchadors = luchadors;
+            _luchadores = luchadores;
         }
 
         // Find all luchadores that haven't won a championship.
-        public List<Luchador> GetLuchadoresWithoutChampionships(List<Luchador> luchadores)
+        public List<Luchador> GetLuchadoresWithoutChampionships()
         {
             throw new NotImplementedException();
         }
 
-        // Find all luchadores from Mexico.
-        public List<Luchador> GetMexicanLuchadores(List<Luchador> luchadores)
+        // Find all luchadores from Mexico, order them by their alias.
+        public List<Luchador> GetMexicanLuchadores()
         {
             throw new NotImplementedException();
         }
 
         // Find the luchador with the most wins.
-        public Luchador GetLuchadorWithMostWins(List<Luchador> luchadores)
+        public Luchador GetLuchadorWithMostWins()
         {
             throw new NotImplementedException();
         }
 
         // Find the average weight of all luchadores.
-        public double GetAverageWeight(List<Luchador> luchadores)
+        public double GetAverageWeight()
         {
             throw new NotImplementedException();
         }
 
         // Find the total number of wins by luchadores from the USA.
-        public int GetTotalWinsByUSALuchadores(List<Luchador> luchadores)
+        public int GetTotalWinsByUSALuchadores()
         {
             throw new NotImplementedException();
         }
 
         // Find the youngest luchador.
-        public Luchador GetYoungestLuchador(List<Luchador> luchadores)
+        public Luchador GetYoungestLuchador()
         {
             throw new NotImplementedException();
         }
 
-        // Find all luchadores with a height above 180 cm.
-        public List<Luchador> GetTallLuchadores(List<Luchador> luchadores)
+        // Find all luchadores with a height above 180 cm who have won a championship.
+        public List<Luchador> GetTallChampionLuchadores()
         {
             throw new NotImplementedException();
         }
 
-        // Find the luchador with the highest number of draws.
-        public Luchador GetLuchadorWithMostDraws(List<Luchador> luchadores)
+        // Find the luchadors who have more than the average number of draws.
+        public List<Luchador> GetLuchadorsMoreAverageDraws()
         {
             throw new NotImplementedException();
         }
 
         // Find the total number of championships won by Spanish luchadores.
-        public int GetTotalChampionshipsBySpanishLuchadores(List<Luchador> luchadores)
+        public int GetTotalChampionshipsBySpanishLuchadores()
         {
             throw new NotImplementedException();
         }
 
         // Find the oldest luchador from Mexico.
-        public Luchador GetOldestMexicanLuchador(List<Luchador> luchadores)
+        public Luchador GetOldestMexicanLuchador()
         {
             throw new NotImplementedException();
         }
 
         // Find all luchadores with more than 20 wins and less than 5 losses.
-        public List<Luchador> GetSuccessfulLuchadores(List<Luchador> luchadores)
+        public List<Luchador> GetSuccessfulLuchadores()
         {
             throw new NotImplementedException();
         }
 
-        // Find the luchador with the lowest win to loss ratio.
-        public Luchador GetLuchadorWithLowestWinToLossRatio(List<Luchador> luchadores)
+        // Find the alias of the luchador with the lowest win to loss ratio.
+        public string GetLuchadorWithLowestWinToLossRatio()
         {
             throw new NotImplementedException();
         }
 
         // Find the average number of wins by country.
-        public Dictionary<string, double> GetAverageWinsByCountry(List<Luchador> luchadores)
+        public Dictionary<string, double> GetAverageWinsByCountry()
         {
             throw new NotImplementedException();
         }
 
-        // Find all luchadores who have a word starting with "The" in their alias.
-        public List<Luchador> GetLuchadoresWithTheInAlias(List<Luchador> luchadores)
+        // Find all luchadores whose alias starts with the word "The".
+        public List<Luchador> GetLuchadoresWithTheInAlias()
         {
             throw new NotImplementedException();
         }
 
         // Find the luchador with the most losses who has won at least one championship.
-        public Luchador GetLuchadorWithMostLossesAndAChampionship(List<Luchador> luchadores)
+        public Luchador GetLuchadorWithMostLossesAndAChampionship()
         {
             throw new NotImplementedException();
         }
 
         // Find the total number of draws by luchadores who have not won any championships.
-        public int GetTotalDrawsByLuchadoresWithoutChampionships(List<Luchador> luchadores)
+        public int GetTotalDrawsByLuchadoresWithoutChampionships()
         {
             throw new NotImplementedException();
         }
 
         // Find all luchadores who were born in the 1990s.
-        public List<Luchador> GetLuchadoresBornInThe90s(List<Luchador> luchadores)
+        public List<Luchador> GetLuchadoresBornInThe90s()
         {
             throw new NotImplementedException();
         }
 
         // Find the luchador with the highest average of wins, losses, and draws.
-        public Luchador GetLuchadorWithHighestAverageOfWinsLossesDraws(List<Luchador> luchadores)
+        public Luchador GetLuchadorWithHighestAverageOfWinsLossesDraws()
         {
             throw new NotImplementedException();
         }
 
         // Find the country with the most luchadores.
-        public string GetCountryWithMostLuchadores(List<Luchador> luchadores)
+        public string GetCountryWithMostLuchadores()
         {
             throw new NotImplementedException();
         }
 
         // Find the luchador with the longest alias name.
-        public Luchador GetLuchadorWithLongestAlias(List<Luchador> luchadores)
+        public Luchador GetLuchadorWithLongestAlias()
         {
             throw new NotImplementedException();
         }
