@@ -32,13 +32,13 @@
         }
 
         // Find the average weight of all luchadores.
-        public double GetAverageWeight()
+        public decimal GetAverageWeight()
         {
             return _luchadores.Average(l => l.WeightKg);
         }
 
         // Find the total number of wins by luchadores from the USA.
-        public int GetTotalWinsByUSALuchadores()
+        public decimal GetTotalWinsByUSALuchadores()
         {
             return _luchadores.Where(l => l.Country == "USA")
                 .Sum(l => l.Wins);
@@ -92,22 +92,22 @@
             return _luchadores.Select(l => 
                 new { 
                     l.Alias, 
-                    WLRatio = l.Wins / (double)l.Losses 
+                    WLRatio = l.Wins / l.Losses 
                 })
-                .OrderByDescending(l => l.WLRatio)
+                .OrderBy(l => l.WLRatio)
                 .First().Alias;
         }
 
-        // Find the average number of wins by country.
-        public Dictionary<string, double> GetAverageWinsByCountry()
+        // Find the average number of wins by country (round to 2 decimals).
+        public Dictionary<string, decimal> GetAverageWinsByCountry()
         {
-            var results = new Dictionary<string, double>();
+            var results = new Dictionary<string, decimal>();
 
             var byCountry = _luchadores.GroupBy(l => l.Country);
 
             foreach(var group in byCountry)
             {
-                results.Add(group.Key, group.Average(g => g.Wins));
+                results.Add(group.Key, Math.Round(group.Average(g => g.Wins), 2));
             }
 
             return results;
@@ -126,7 +126,7 @@
         }
 
         // Find the total number of draws by luchadores who have not won any championships.
-        public int GetTotalDrawsByLuchadoresWithoutChampionships()
+        public decimal GetTotalDrawsByLuchadoresWithoutChampionships()
         {
             return _luchadores.Where(l => l.Championships == 0).Sum(l => l.Draws);
         }
@@ -138,7 +138,7 @@
         }
 
         // Find the luchador alias with the most matches (wins, losses, draws).
-        public string GetLuchadorWithHighestAverageOfWinsLossesDraws(List<Luchador> luchadores)
+        public string GetLuchadorWithMostMatches()
         {
             return _luchadores.Select(l =>
                 new

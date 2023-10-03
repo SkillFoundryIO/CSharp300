@@ -28,13 +28,13 @@
         }
 
         // Find the average weight of all luchadores.
-        public double GetAverageWeight()
+        public decimal GetAverageWeight()
         {
             throw new NotImplementedException();
         }
 
         // Find the total number of wins by luchadores from the USA.
-        public int GetTotalWinsByUSALuchadores()
+        public decimal GetTotalWinsByUSALuchadores()
         {
             throw new NotImplementedException();
         }
@@ -81,8 +81,8 @@
             throw new NotImplementedException();
         }
 
-        // Find the average number of wins by country.
-        public Dictionary<string, double> GetAverageWinsByCountry()
+        // Find the average number of wins by country (round to 2 decimals).
+        public Dictionary<string, decimal> GetAverageWinsByCountry()
         {
             throw new NotImplementedException();
         }
@@ -100,7 +100,7 @@
         }
 
         // Find the total number of draws by luchadores who have not won any championships.
-        public int GetTotalDrawsByLuchadoresWithoutChampionships()
+        public decimal GetTotalDrawsByLuchadoresWithoutChampionships()
         {
             throw new NotImplementedException();
         }
@@ -111,8 +111,8 @@
             throw new NotImplementedException();
         }
 
-        // Find the luchador with the highest average of wins, losses, and draws.
-        public Luchador GetLuchadorWithHighestAverageOfWinsLossesDraws()
+        // Find the luchador alias with the most matches (wins, losses, draws).
+        public string GetLuchadorWithMostMatches()
         {
             throw new NotImplementedException();
         }

@@ -27,11 +27,11 @@
                         LastName = columns[2],
                         DoB = DateTime.Parse(columns[3]),
                         Country = columns[4],
-                        HeightCm = int.Parse(columns[5]),
-                        WeightKg = int.Parse(columns[6]),
-                        Wins = int.Parse(columns[7]),
-                        Losses = int.Parse(columns[8]),
-                        Draws = int.Parse(columns[9]),
+                        HeightCm = decimal.Parse(columns[5]),
+                        WeightKg = decimal.Parse(columns[6]),
+                        Wins = decimal.Parse(columns[7]),
+                        Losses = decimal.Parse(columns[8]),
+                        Draws = decimal.Parse(columns[9]),
                         Championships = int.Parse(columns[10])
                     };
 
