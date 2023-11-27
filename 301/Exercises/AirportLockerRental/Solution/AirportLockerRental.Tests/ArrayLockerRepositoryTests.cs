@@ -32,55 +32,55 @@ namespace AirportLockerRental.Tests
         [Test]
         public void CanGetContents()
         {
-            Assert.IsNotNull(_repo.Get(1));
+            Assert.That(_repo.Get(1), Is.Not.Null);
         }
 
         [Test]
         public void EmptyLockerReturnsNull()
         {
-            Assert.IsNull(_repo.Get(4));
+            Assert.That(_repo.Get(4), Is.Null);
         }
 
         [Test]
         public void AvailabilityCheck()
         {
-            Assert.IsTrue(_repo.IsAvailable(4));
+            Assert.That(_repo.IsAvailable(4), Is.True);
 
-            Assert.IsFalse(_repo.IsAvailable(1));
+            Assert.That(_repo.IsAvailable(1), Is.False);
         }
 
         [Test]
         public void CannotAddOutOfRange()
         {
-            Assert.IsFalse(_repo.Add(new LockerContents
+            Assert.That(_repo.Add(new LockerContents
             {
                 LockerNumber = 20,
                 RenterName = "Baddy McOverflowFace",
                 Description = "Forbidden items"
-            }));
+            }), Is.False);
         }
 
         [Test]
         public void CannotAddOccupied()
         {
-            Assert.IsFalse(_repo.Add(new LockerContents
+            Assert.That(_repo.Add(new LockerContents
             {
                 LockerNumber = 1,
                 RenterName = "Baddy McUnavailableFace",
                 Description = "Forbidden items"
-            }));
+            }), Is.False);
         }
 
         [Test]
         public void CanRemoveItem()
         {
-            Assert.IsNotNull(_repo.Remove(7));
+            Assert.That(_repo.Remove(7), Is.Not.Null);
         }
 
         [Test]
         public void RemoveEmptyReturnsNull()
         {
-            Assert.IsNull(_repo.Remove(10));
+            Assert.That(_repo.Remove(10), Is.Null);
         }
     }
 }

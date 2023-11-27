@@ -30,7 +30,7 @@ namespace AirportLockerRental.Tests
 
             var result = lockerManager.ViewLocker(1);
 
-            Assert.AreEqual(contents, result);
+            Assert.That(contents, Is.EqualTo(result));
         }
 
         [Test]
@@ -39,7 +39,7 @@ namespace AirportLockerRental.Tests
             var lockerManager = GetLockerManager();
             bool result = lockerManager.CanRentLocker(1);
 
-            Assert.IsTrue(result);
+            Assert.That(result, Is.True);
         }
 
         [Test]
@@ -52,7 +52,7 @@ namespace AirportLockerRental.Tests
 
             bool result = lockerManager.CanRentLocker(1);
 
-            Assert.IsFalse(result);
+            Assert.That(result, Is.False);
         }
 
         [Test]
@@ -63,8 +63,8 @@ namespace AirportLockerRental.Tests
 
             bool result = lockerManager.RentLocker(1, contents);
 
-            Assert.IsTrue(result);
-            Assert.AreEqual(contents, lockerManager.ViewLocker(1));
+            Assert.That(result, Is.True);
+            Assert.That(contents, Is.EqualTo(lockerManager.ViewLocker(1)));
         }
 
         [Test]
@@ -78,8 +78,8 @@ namespace AirportLockerRental.Tests
 
             bool result = lockerManager.RentLocker(1, contents2);
 
-            Assert.IsFalse(result);
-            Assert.AreEqual(contents1, lockerManager.ViewLocker(1));
+            Assert.That(result, Is.False);
+            Assert.That(contents1, Is.EqualTo(lockerManager.ViewLocker(1)));
         }
 
         [Test]
@@ -92,8 +92,8 @@ namespace AirportLockerRental.Tests
 
             LockerContents result = lockerManager.EndRental(1);
 
-            Assert.AreEqual(contents, result);
-            Assert.IsTrue(lockerManager.CanRentLocker(1));
+            Assert.That(contents, Is.EqualTo(result));
+            Assert.That(lockerManager.CanRentLocker(1), Is.True);
         }
 
         [Test]
@@ -102,7 +102,7 @@ namespace AirportLockerRental.Tests
             var lockerManager = GetLockerManager();
             LockerContents result = lockerManager.EndRental(1);
 
-            Assert.IsNull(result);
+            Assert.That(result, Is.Null);
         }
     }
 }

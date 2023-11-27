@@ -29,7 +29,7 @@ namespace LINQPracticeMinis.Tests
 
             var allExpectedPresent = expected.All(alias => result.Any(l => l.Alias == alias));
 
-            Assert.IsTrue(allExpectedPresent, "Not all expected aliases are present!");
+            Assert.That(allExpectedPresent, Is.True, "Not all expected aliases are present!");
         }
 
         [Test]
@@ -44,7 +44,7 @@ namespace LINQPracticeMinis.Tests
 
             var allExpectedPresent = expected.All(alias => result.Any(l => l.Alias == alias));
 
-            Assert.IsTrue(allExpectedPresent, "Not all expected aliases are present!");
+            Assert.That(allExpectedPresent, Is.True, "Not all expected aliases are present!");
         }
 
         [Test]
@@ -53,7 +53,7 @@ namespace LINQPracticeMinis.Tests
             var result = _queries.GetLuchadorWithMostWins();
 
 
-            Assert.AreEqual("Thunder Strike", result.Alias);
+            Assert.That("Thunder Strike", Is.EqualTo(result.Alias));
         }
 
         [Test]
@@ -61,7 +61,7 @@ namespace LINQPracticeMinis.Tests
         {
             var result = _queries.GetAverageWeight();
 
-            Assert.AreEqual(74.44M, result);
+            Assert.That(74.44M, Is.EqualTo(result));
         }
 
         [Test]
@@ -69,7 +69,7 @@ namespace LINQPracticeMinis.Tests
         {
             var result = _queries.GetTotalWinsByUSALuchadores();
 
-            Assert.AreEqual(213, result);
+            Assert.That(213, Is.EqualTo(result));
         }
 
         [Test]
@@ -77,7 +77,7 @@ namespace LINQPracticeMinis.Tests
         {
             var result = _queries.GetYoungestLuchador();
 
-            Assert.AreEqual("Rapid Thunder", result.Alias);
+            Assert.That("Rapid Thunder", Is.EqualTo(result.Alias));
         }
 
         [Test]
@@ -89,7 +89,7 @@ namespace LINQPracticeMinis.Tests
 
             var allExpectedPresent = expected.All(alias => result.Any(l => l.Alias == alias));
 
-            Assert.IsTrue(allExpectedPresent, "Not all expected aliases are present!");
+            Assert.That(allExpectedPresent, Is.True, "Not all expected aliases are present!");
         }
 
         [Test]
@@ -104,7 +104,7 @@ namespace LINQPracticeMinis.Tests
 
             var allExpectedPresent = expected.All(alias => result.Any(l => l.Alias == alias));
 
-            Assert.IsTrue(allExpectedPresent, "Not all expected aliases are present!");
+            Assert.That(allExpectedPresent, Is.True, "Not all expected aliases are present!");
         }
 
         [Test]
@@ -112,7 +112,7 @@ namespace LINQPracticeMinis.Tests
         {
             var result = _queries.GetTotalChampionshipsBySpanishLuchadores();
 
-            Assert.AreEqual(4, result);
+            Assert.That(4, Is.EqualTo(result));
         }
 
         [Test]
@@ -120,7 +120,7 @@ namespace LINQPracticeMinis.Tests
         {
             var result = _queries.GetOldestMexicanLuchador();
 
-            Assert.AreEqual("The Anvil", result.Alias);
+            Assert.That("The Anvil", Is.EqualTo(result.Alias));
         }
 
         [Test]
@@ -132,7 +132,7 @@ namespace LINQPracticeMinis.Tests
 
             var allExpectedPresent = expected.All(alias => result.Any(l => l.Alias == alias));
 
-            Assert.IsTrue(allExpectedPresent, "Not all expected aliases are present!");
+            Assert.That(allExpectedPresent, Is.True, "Not all expected aliases are present!");
         }
 
         [Test]
@@ -140,7 +140,7 @@ namespace LINQPracticeMinis.Tests
         {
             var result = _queries.GetLuchadorWithLowestWinToLossRatio();
 
-            Assert.AreEqual("Whirlwind Leopard", result);
+            Assert.That("Whirlwind Leopard", Is.EqualTo(result));
         }
 
         [Test]
@@ -148,9 +148,9 @@ namespace LINQPracticeMinis.Tests
         {
             var result = _queries.GetAverageWinsByCountry();
 
-            Assert.AreEqual(29.78M, result["Mexico"]);
-            Assert.AreEqual(26.12M, result["Spain"]);
-            Assert.AreEqual(26.62M, result["USA"]);
+            Assert.That(29.78M, Is.EqualTo(result["Mexico"]));
+            Assert.That(26.12M, Is.EqualTo(result["Spain"]));
+            Assert.That(26.62M, Is.EqualTo(result["USA"]));
         }
 
         [Test]
@@ -162,7 +162,7 @@ namespace LINQPracticeMinis.Tests
 
             var allExpectedPresent = expected.All(alias => result.Any(l => l.Alias == alias));
 
-            Assert.IsTrue(allExpectedPresent, "Not all expected aliases are present!");
+            Assert.That(allExpectedPresent, Is.True, "Not all expected aliases are present!");
         }
 
         [Test]
@@ -170,7 +170,7 @@ namespace LINQPracticeMinis.Tests
         {
             var result = _queries.GetLuchadorWithMostLossesAndAChampionship();
 
-            Assert.AreEqual("Whirlwind Leopard", result.Alias);
+            Assert.That("Whirlwind Leopard", Is.EqualTo(result.Alias));
         }
 
         [Test]
@@ -178,7 +178,7 @@ namespace LINQPracticeMinis.Tests
         {
             var result = _queries.GetTotalDrawsByLuchadoresWithoutChampionships();
 
-            Assert.AreEqual(26, result);
+            Assert.That(26, Is.EqualTo(result));
         }
 
         [Test]
@@ -193,7 +193,7 @@ namespace LINQPracticeMinis.Tests
 
             var allExpectedPresent = expected.All(alias => result.Any(l => l.Alias == alias));
 
-            Assert.IsTrue(allExpectedPresent, "Not all expected aliases are present!");
+            Assert.That(allExpectedPresent, Is.True, "Not all expected aliases are present!");
         }
 
         [Test]
@@ -201,7 +201,7 @@ namespace LINQPracticeMinis.Tests
         {
             var result = _queries.GetLuchadorWithMostMatches();
 
-            Assert.AreEqual("Thunder Strike", result);
+            Assert.That("Thunder Strike", Is.EqualTo(result));
         }
 
         [Test]
@@ -209,7 +209,7 @@ namespace LINQPracticeMinis.Tests
         {
             var result = _queries.GetCountryWithMostLuchadores();
 
-            Assert.AreEqual("Mexico", result);
+            Assert.That("Mexico", Is.EqualTo(result));
         }
 
         [Test]
@@ -217,7 +217,7 @@ namespace LINQPracticeMinis.Tests
         {
             var result = _queries.GetLuchadorWithLongestAlias();
 
-            Assert.AreEqual("Whirlwind Leopard", result.Alias);
+            Assert.That("Whirlwind Leopard", Is.EqualTo(result.Alias));
         }
     }
 }
