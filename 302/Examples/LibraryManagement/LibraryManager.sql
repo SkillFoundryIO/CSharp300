@@ -84,3 +84,10 @@ VALUES
     (3, 'Back in Black'), 
     (3, 'The Dark Side of the Moon'), 
     (3, 'Led Zeppelin IV');
+
+INSERT INTO CheckoutLog (BorrowerID, MediaID, CheckoutDate, DueDate)
+VALUES 
+    (5, 2, getdate()-9, getdate()-2), -- emily has an overdue book
+    (1, 5, getdate(), getdate()+7),
+    (1, 6, getdate(), getdate()+7),
+    (1, 9, getdate(), getdate()+7); -- John has 3 items checked out.

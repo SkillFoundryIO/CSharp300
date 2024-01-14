@@ -4,6 +4,7 @@
 //DirectoryExamples.PrintLogicalDrives();
 //DirectoryExamples.PrintCurrentDirectoryFiles();
 
-FileExamples.IceCreamReadAllLines();
+//FileExamples.IceCreamReadAllLines();
+//FileExamples.IceCreamReadAllText();
 //FileExamples.IceCreamStreamWithoutUsing();
 //FileExamples.IceCreamStreamReader();

@@ -1,19 +1,18 @@
-﻿using System.IO;
-
-namespace SystemIOExamples
+﻿namespace SystemIOExamples
 {
     public class FileExamples
     {
-        private const string ICE_CREAM_PATH = @"Data/IceCreamFlavors.txt";
+        // Linux and Mac use / for directories and windows uses \, Path.Combine normalizes this.
+        private static string PATH = Path.Combine("Data", "IceCreamFlavors.txt");
 
         /// <summary>
         /// Demonstrates ReadAllLines() and Exists()
         /// </summary>
         public static void IceCreamReadAllLines()
         {           
-            if (File.Exists(ICE_CREAM_PATH))
+            if (File.Exists(PATH))
             {
-                string[] flavors = File.ReadAllLines(ICE_CREAM_PATH);
+                string[] flavors = File.ReadAllLines(PATH);
                 Console.WriteLine("Ice Cream Flavors:");
                 foreach (var flavor in flavors)
                 {
@@ -27,20 +26,44 @@ namespace SystemIOExamples
         }
 
         /// <summary>
+        /// Read the file contents as one string
+        /// </summary>
+        public static void IceCreamReadAllText()
+        {
+            if (File.Exists(PATH))
+            {
+                string flavors = File.ReadAllText(PATH);
+                Console.WriteLine("Ice Cream Flavors:");
+                Console.WriteLine(flavors);
+            }
+            else
+            {
+                Console.WriteLine("File not found.");
+            }
+        }
+
+        /// <summary>
         /// Demonstrates a StreamReader()
         /// </summary>
         public static void IceCreamStreamReader()
         {
-            if (File.Exists(ICE_CREAM_PATH))
+            if (File.Exists(PATH))
             {
-                using (StreamReader sr = new StreamReader(ICE_CREAM_PATH))
+                try
                 {
-                    Console.WriteLine("Ice Cream Flavors:");
-                    while (!sr.EndOfStream)
+                    using (StreamReader sr = new StreamReader(PATH))
                     {
-                        string flavor = sr.ReadLine() ?? "";
-                        Console.WriteLine(flavor);
+                        Console.WriteLine("Ice Cream Flavors:");
+                        while (!sr.EndOfStream)
+                        {
+                            string flavor = sr.ReadLine() ?? "";
+                            Console.WriteLine(flavor);
+                        }
                     }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("An error occurred: " + ex.Message);
                 }
             }
             else
@@ -54,12 +77,12 @@ namespace SystemIOExamples
         /// </summary>
         public static void IceCreamStreamWithoutUsing()
         {
-            if (File.Exists(ICE_CREAM_PATH))
+            if (File.Exists(PATH))
             {
                 StreamReader? reader = null;
                 try
                 {
-                    reader = new StreamReader(ICE_CREAM_PATH);
+                    reader = new StreamReader(PATH);
                     Console.WriteLine("Ice Cream Flavors:");
                     while (!reader.EndOfStream)
                     {
