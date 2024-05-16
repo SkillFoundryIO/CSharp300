@@ -44,15 +44,19 @@ namespace CafePOS.ConsoleUI.IO
                     }
 
                     Console.WriteLine($"{r.CafeOrder.OrderDate,-12:d} {r.OrderID,-10} {r.ItemPrice.Item.ItemName,-30:c} {r.Quantity,-10} {r.ItemPrice.Price,-10:c} {r.ExtendedPrice,-15:c}");
+                    
                     orderId = r.OrderID;
 
                     if (r.CafeOrder.Tax != null)
                         tax = (decimal)r.CafeOrder.Tax;
+
                     if (r.CafeOrder.Tip != null)
                         tip = (decimal)r.CafeOrder.Tip;
+
                     if (r.CafeOrder.AmountDue != null)
                         orderTotal = (decimal)r.CafeOrder.AmountDue;
                 }
+
                 Console.WriteLine(new string('-', 100));
                 Console.WriteLine($"{"",-63} {"Tax ",12} {tax,-15:c}");
                 Console.WriteLine($"{"",-63} {"Tip ",12} {tip,-15:c}");
@@ -94,7 +98,7 @@ namespace CafePOS.ConsoleUI.IO
                     Console.WriteLine($"{r.Key,-20} {r.Value,-15:c}");
                     grandTotal += r.Value;
                 }
-                
+
                 Console.WriteLine(new string('-', 100));
                 Console.WriteLine($"{"Grand Total: ",20} {grandTotal,-15:c}");
                 Console.WriteLine(new string('-', 100));

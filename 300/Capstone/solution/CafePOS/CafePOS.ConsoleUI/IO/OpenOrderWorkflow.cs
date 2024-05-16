@@ -10,6 +10,7 @@ namespace CafePOS.ConsoleUI.IO
             List<ItemToAdd> itemsAddedToOrder = new List<ItemToAdd>();
 
             bool haveOpenOrders = ListOpenOrders(service, false, "Add Items to Open Order");
+
             if (!haveOpenOrders)
             {
                 Utilities.AnyKey();
@@ -64,6 +65,7 @@ namespace CafePOS.ConsoleUI.IO
             {
                 Utilities.SystemMessageRed(addItemResult.Message);
             }
+
             Utilities.AnyKey();
         }
 
@@ -94,6 +96,7 @@ namespace CafePOS.ConsoleUI.IO
             Utilities.DisplayMenuHeader(title);
 
             var list = service.GetOpenOrders();
+
             if (list.Ok)
             {
                 Console.WriteLine($"{"Order ID",-10}  {"Order Date",-15}  {"Server Name",-20}");
@@ -107,7 +110,9 @@ namespace CafePOS.ConsoleUI.IO
                 if (viewDetails)
                 {
                     Console.WriteLine();
+
                     var input = Utilities.GetIntZeroOrHigher("Enter Order ID to view order details (or 0 to Quit): ");
+
                     if (input == 0)
                     {
                         return false;
@@ -118,6 +123,7 @@ namespace CafePOS.ConsoleUI.IO
             else
             {
                 Utilities.SystemMessageRed(list.Message);
+
                 return false;
             }
             return true;
@@ -144,7 +150,9 @@ namespace CafePOS.ConsoleUI.IO
         public static int ListandSelectCategory(IOrderService service)
         {
             Console.Clear();
+
             var categories = service.GetCategories();
+            
             if (categories.Ok)
             {
                 Console.WriteLine($"{"ID",-5} {"Category Name",-20}");

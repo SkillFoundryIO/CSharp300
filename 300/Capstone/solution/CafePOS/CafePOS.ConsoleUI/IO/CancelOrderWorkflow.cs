@@ -9,6 +9,7 @@ namespace CafePOS.ConsoleUI.IO
             Utilities.DisplayMenuHeader("Cancel Order");
 
             var list = service.GetOpenOrders();
+
             if (list.Ok)
             {
                 Console.WriteLine($"{"Order ID",-10}  {"Order Date",-15}  {"Server Name",-20}");
@@ -32,6 +33,7 @@ namespace CafePOS.ConsoleUI.IO
             ListOpenOrders(service);
 
             var input = Utilities.GetIntZeroOrHigher("\nEnter Order ID (or 0 to Cancel): ");
+
             if (input == 0)
             {
                 return;
@@ -42,6 +44,7 @@ namespace CafePOS.ConsoleUI.IO
             if (isOpenResult.Ok)
             {
                 var cancelResult = service.CancelOrder(input);
+
                 if (cancelResult.Ok)
                 {
                     Utilities.SystemMessageGreen($"\nOrder# {input} has been cancelled.");

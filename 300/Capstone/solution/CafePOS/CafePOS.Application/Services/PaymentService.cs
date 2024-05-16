@@ -19,6 +19,7 @@ namespace CafePOS.Application.Services
             try
             {
                 var hasItems = _paymentRepository.OrderHasItems(orderId);
+
                 if (!hasItems)
                 {
                     return ResultFactory.Fail<bool>("This order has no items currently. Try cancelling the order instead.");
@@ -39,10 +40,12 @@ namespace CafePOS.Application.Services
             try
             {
                 var types = _paymentRepository.GetPaymentTypes();
+
                 if (types.Count == 0)
                 {
                     return ResultFactory.Fail<List<PaymentType>>("Error getting payment types.");
                 }
+
                 return ResultFactory.Success(types);
             }
             catch (Exception ex)
@@ -63,6 +66,7 @@ namespace CafePOS.Application.Services
                 }
 
                 _paymentRepository.ProcessPayment(orderId, paymentType);
+
                 return ResultFactory.Success();
             }
             catch (Exception ex)
@@ -96,17 +100,22 @@ namespace CafePOS.Application.Services
                 if (!isUnder15items && !isCustomerTipOver15Percent && totals.SubTotal != null)
                 {
                     decimal newTip = (decimal)totals.SubTotal * .15M;
+
                     _paymentRepository.AddTipToOrder(orderId, newTip);
+
                     return ResultFactory.Success("Tip amount entered did not meet minimum. Tip was adjusted to 15%.");
                 }
+
                 if (!isUnder15items && isCustomerTipOver15Percent)
                 {
                     _paymentRepository.AddTipToOrder(orderId, tip);
+
                     return ResultFactory.Success("Tip amount has been applied to order.");
                 }
                 else
                 {
                     _paymentRepository.AddTipToOrder(orderId, tip);
+
                     return ResultFactory.Success("Tip amount has been applied to order.");
                 }
             }
@@ -121,6 +130,7 @@ namespace CafePOS.Application.Services
             try
             {
                 var total = _paymentRepository.GetFinalTotal(orderId);
+
                 return ResultFactory.Success(total);
             }
             catch (Exception ex)
@@ -134,10 +144,13 @@ namespace CafePOS.Application.Services
             try
             {
                 var IsUnder15Items = _paymentRepository.IsOrderUnder15Items(orderId);
+                
                 if (!IsUnder15Items)
                 {
-                    return ResultFactory.Fail<bool>("NOTE: Order has over 15 items. Minimum of a 15% tip is required. System will increase tip if less than 15% is entered.");
+                    return ResultFactory
+                        .Fail<bool>("NOTE: Order has over 15 items. Minimum of a 15% tip is required. System will increase tip if less than 15% is entered.");
                 }
+
                 return ResultFactory.Success(true);
             }
             catch (Exception ex)

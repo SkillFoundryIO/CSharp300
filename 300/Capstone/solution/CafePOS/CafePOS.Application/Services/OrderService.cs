@@ -27,6 +27,7 @@ namespace CafePOS.Application.Services
                 {
                     return ResultFactory.Fail<List<Category>>("Error getting category list.");
                 }
+
                 return ResultFactory.Success(categories);
             }
             catch (Exception ex)
@@ -40,10 +41,12 @@ namespace CafePOS.Application.Services
             try
             {
                 var items = _orderRepository.GetAvailableItemsByCategory(categoryId, _timeOfDay);
+
                 if (items.Count() == 0)
                 {
                     return ResultFactory.Fail<List<ItemPrice>>("No items are available for that category.");
                 }
+
                 return ResultFactory.Success(items);
             }
             catch (Exception ex)
@@ -57,10 +60,12 @@ namespace CafePOS.Application.Services
             try
             {
                 var itemPriceId = _orderRepository.GetItemPriceID(categoryId, itemId, _timeOfDay);
+                
                 if (itemPriceId == 0)
                 {
                     return ResultFactory.Fail<int>("Item is not available or does not exist.");
                 }
+                
                 return ResultFactory.Success(itemPriceId);
             }
             catch (Exception ex)
@@ -74,6 +79,7 @@ namespace CafePOS.Application.Services
             try
             {
                 _orderRepository.AddItemsToOrder(request);
+
                 return ResultFactory.Success();
             }
             catch (Exception ex)
@@ -87,10 +93,12 @@ namespace CafePOS.Application.Services
             try
             {
                 var orders = _orderRepository.GetOpenOrders();
+
                 if (orders.Count == 0)
                 {
                     return ResultFactory.Fail<List<CafeOrder>>("There are no orders open currently.");
                 }
+                
                 return ResultFactory.Success(orders);
             }
             catch (Exception ex)
@@ -156,6 +164,7 @@ namespace CafePOS.Application.Services
             try
             {
                 _orderRepository.CancelOrder(orderId);
+                
                 return ResultFactory.Success();
             }
             catch (Exception ex)
