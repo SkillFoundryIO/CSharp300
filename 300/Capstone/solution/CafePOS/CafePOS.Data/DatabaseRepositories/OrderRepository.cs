@@ -40,11 +40,11 @@ namespace CafePOS.Data.Repositories
             var item = _dbContext.ItemPrice
                 .Include(ip => ip.Item)
                 .FirstOrDefault(
-                ip => ip.ItemID == itemId &&
-                ip.Item.CategoryID == categoryId &&
-                ip.StartDate < DateTime.Today &&
-                ip.EndDate == null &&
-                ip.TimeOfDayID == timeOfDay);
+                    ip => ip.ItemID == itemId &&
+                    ip.Item.CategoryID == categoryId &&
+                    ip.StartDate < DateTime.Today &&
+                    ip.EndDate == null &&
+                    ip.TimeOfDayID == timeOfDay);
             return item == null ? 0 : item.ItemPriceID;
         }
 
@@ -52,7 +52,8 @@ namespace CafePOS.Data.Repositories
         {
             foreach (var oi in orderItems)
             {
-                var eachPrice = _dbContext.ItemPrice.FirstOrDefault(ip => ip.ItemPriceID == oi.ItemPriceId).Price;
+                var eachPrice = _dbContext.ItemPrice
+                    .FirstOrDefault(ip => ip.ItemPriceID == oi.ItemPriceId).Price;
 
                 OrderItem newItem = new OrderItem
                 {
@@ -85,21 +86,27 @@ namespace CafePOS.Data.Repositories
 
         public bool IsOrderOpen(int orderId)
         {
-            return _dbContext.CafeOrder.FirstOrDefault(co => co.OrderID == orderId && co.PaymentTypeID == null) != null ? true : false;
+            return _dbContext.CafeOrder
+                .FirstOrDefault(co => co.OrderID == orderId && co.PaymentTypeID == null) != null ? true : false;
         }
 
         public bool IsValidOrderNumber(int orderId)
         {
-            return _dbContext.CafeOrder.FirstOrDefault(co => co.OrderID == orderId) != null ? true : false;
+            return _dbContext.CafeOrder
+                .FirstOrDefault(co => co.OrderID == orderId) != null ? true : false;
         }
 
         public void CancelOrder(int orderId)
         {
             using (var transaction = _dbContext.Database.BeginTransaction())
             {
-                _dbContext.OrderItem.Where(oi => oi.OrderID == orderId).ExecuteDelete();
+                _dbContext.OrderItem
+                    .Where(oi => oi.OrderID == orderId)
+                    .ExecuteDelete();
 
-                _dbContext.CafeOrder.Where(co => co.OrderID == orderId).ExecuteDelete();
+                _dbContext.CafeOrder
+                    .Where(co => co.OrderID == orderId)
+                    .ExecuteDelete();
 
                 transaction.Commit();
             }

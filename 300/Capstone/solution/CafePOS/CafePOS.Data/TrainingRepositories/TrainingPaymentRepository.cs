@@ -7,20 +7,26 @@ namespace CafePOS.Data.TrainingRepositories
     {
         public void AddTipToOrder(int orderId, decimal tip)
         {
-            FakeDb.CafeOrders.FirstOrDefault(co => co.OrderID == orderId).Tip = tip;
+            FakeDb.CafeOrders
+                .FirstOrDefault(co => co.OrderID == orderId).Tip = tip;
         }
 
         public decimal GetFinalTotal(int orderId)
         {
-            return (decimal)FakeDb.CafeOrders.FirstOrDefault(co => co.OrderID == orderId).AmountDue;
+            return (decimal)FakeDb.CafeOrders
+                .FirstOrDefault(co => co.OrderID == orderId).AmountDue;
         }
 
         public CafeOrder GetOrderSubtotals(int orderId)
         {
-            var order = FakeDb.CafeOrders.FirstOrDefault(co => co.OrderID == orderId && co.PaymentTypeID == null);
+            var order = FakeDb.CafeOrders
+                .FirstOrDefault(co => co.OrderID == orderId && co.PaymentTypeID == null);
+            
             var orderIndex = FakeDb.CafeOrders.IndexOf(order);
 
-            var orderItems = FakeDb.OrderItems.Where(ci => ci.OrderID == orderId).ToList();
+            var orderItems = FakeDb.OrderItems
+                .Where(ci => ci.OrderID == orderId)
+                .ToList();
 
             if (orderItems.Count > 0)
             {
@@ -41,12 +47,15 @@ namespace CafePOS.Data.TrainingRepositories
 
         public bool IsOrderUnder15Items(int orderId)
         {
-            return FakeDb.OrderItems.Where(oi => oi.OrderID == orderId).Sum(oi => oi.Quantity) < 15 ? true : false;
+            return FakeDb.OrderItems
+                .Where(oi => oi.OrderID == orderId)
+                .Sum(oi => oi.Quantity) < 15 ? true : false;
         }
 
         public bool IsValidPaymentType(int paymentType)
         {
-            return FakeDb.PaymentTypes.FirstOrDefault(pt => pt.PaymentTypeID == paymentType) != null ? true : false;
+            return FakeDb.PaymentTypes
+                .FirstOrDefault(pt => pt.PaymentTypeID == paymentType) != null ? true : false;
         }
 
         public bool OrderHasItems(int orderId)

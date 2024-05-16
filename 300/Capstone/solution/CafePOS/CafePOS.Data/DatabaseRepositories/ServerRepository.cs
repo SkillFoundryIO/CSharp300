@@ -15,7 +15,9 @@ namespace CafePOS.Data.Repositories
 
         public List<Server> GetAvailableServers()
         {
-            return _dbContext.Server.Where(s => s.HireDate < DateTime.Today && s.TermDate == null).ToList();
+            return _dbContext.Server
+                .Where(s => s.HireDate < DateTime.Today && s.TermDate == null)
+                .ToList();
         }
 
         public Server? GetServer(int serverId)
@@ -27,8 +29,10 @@ namespace CafePOS.Data.Repositories
         public int CreateNewOrderForServer(Server server)
         {
             var order = new CafeOrder();
+            
             order.Server = server;
             order.OrderDate = DateTime.Now;
+
             _dbContext.CafeOrder.Add(order);
             _dbContext.SaveChanges();
 

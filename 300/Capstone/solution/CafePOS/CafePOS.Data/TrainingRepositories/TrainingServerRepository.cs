@@ -19,6 +19,7 @@ namespace CafePOS.Data.TrainingRepositories
         public int CreateNewOrderForServer(Server server)
         {
             var order = new CafeOrder();
+
             order.OrderID = FakeDb.CafeOrders.Last().OrderID + 1;
             order.ServerID = server.ServerID;
             order.OrderDate = DateTime.Now;
