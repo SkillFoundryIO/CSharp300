@@ -158,13 +158,29 @@
 
         public static void DisplayMenuHeader(string title)
         {
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine(new string('-', 100));
-            Console.WriteLine($"Fourth Wall Cafe  --  {title}");
-            Console.WriteLine(new string('-', 100));
-            Console.ResetColor();
-            Console.WriteLine();
+            var appConfig = new AppConfiguration();
+            var mode = appConfig.GetTrainingModeSetting();
+
+            if (mode == Core.DTOs.TrainingMode.Enabled)
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine(new string('-', 100));
+                Console.WriteLine($"Fourth Wall Cafe  --  {title} -- TRAINING MODE");
+                Console.WriteLine(new string('-', 100));
+                Console.ResetColor();
+                Console.WriteLine();
+            }
+            else
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine(new string('-', 100));
+                Console.WriteLine($"Fourth Wall Cafe  --  {title}");
+                Console.WriteLine(new string('-', 100));
+                Console.ResetColor();
+                Console.WriteLine();
+            }
         }
     }
 }
