@@ -23,7 +23,7 @@ namespace CafePOS.ConsoleUI.IO
                 Utilities.DisplayMenuHeader("Add Items to Open Order");
 
                 int categoryId = ListandSelectCategory(service);
-                // add loop here
+               
                 GetAvailableItemsByCategory(service, categoryId);
 
                 ItemToAdd orderedItem = new ItemToAdd();
@@ -147,7 +147,7 @@ namespace CafePOS.ConsoleUI.IO
             var categories = service.GetCategories();
             if (categories.Ok)
             {
-                Console.WriteLine($"{"Category ID",-5} {"Category Name",-20}");
+                Console.WriteLine($"{"ID",-5} {"Category Name",-20}");
                 Console.WriteLine(new string('-', 30));
 
                 foreach (var category in categories.Data)
