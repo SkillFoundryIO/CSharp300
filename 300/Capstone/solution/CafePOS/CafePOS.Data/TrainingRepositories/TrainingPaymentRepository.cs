@@ -63,8 +63,6 @@ namespace CafePOS.Data.TrainingRepositories
             order.AmountDue = order.SubTotal + order.Tax + order.Tip;
 
             FakeDb.CafeOrders[orderIndex] = order;
-
-            var verificaiton = FakeDb.CafeOrders.FirstOrDefault(co => co.OrderID == orderId);
         }
     }
 }
