@@ -9,6 +9,7 @@
             do
             {
                 SystemPromptCyan($"\nEnter your choice ({low}-{high}): ");
+
                 if (int.TryParse(Console.ReadLine(), out choice))
                 {
                     if (choice >= low && choice <= high)
@@ -38,6 +39,7 @@
                         return result;
                     }
                 }
+
                 SystemMessageRed("Invalid input, must be a positive integer!");
                 AnyKey();
             } while (true);
@@ -60,6 +62,7 @@
                         return result;
                     }
                 }
+
                 SystemMessageRed("Invalid input, must be zero or higher!");
                 AnyKey();
             } while (true);
@@ -74,12 +77,14 @@
                 Console.ResetColor();
 
                 if(decimal.TryParse(Console.ReadLine(), out decimal amount))
+
                 if (amount >= 0)
                 {
                     return amount;
                 }
+                
                 Console.ResetColor();
-                SystemMessageRed("Negative numbers are not allowed.");
+                SystemMessageRed("Invalid input, must be a positive integer!");
                 AnyKey();
             } while (true);
         }
@@ -97,6 +102,7 @@
                     {
                         return date;
                     }
+
                 Console.ResetColor();
                 SystemMessageRed("Future dates are not allowed.");
                 AnyKey();
@@ -116,12 +122,14 @@
             {
                 SystemPromptCyan("\nDo you want to add more items? Y/N: ");
                 input = Console.ReadLine().ToUpper();
+
                 if (!string.IsNullOrWhiteSpace(input))
                 {
                     if (input == "N")
                     {
                         return false;
                     }
+
                     if (input == "Y")
                     {
                         return true;
@@ -158,10 +166,13 @@
 
         public static void DisplayMenuHeader(string title)
         {
+            var appConfig = new AppConfiguration();
+            var mode = appConfig.GetTrainingModeSetting();
+
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(new string('-', 100));
-            Console.WriteLine($"Fourth Wall Cafe  --  {title}");
+            Console.WriteLine($"Fourth Wall Cafe  --  {title}" + (mode == Core.DTOs.TrainingMode.Enabled ? " -- TRAINING MODE" : ""));
             Console.WriteLine(new string('-', 100));
             Console.ResetColor();
             Console.WriteLine();

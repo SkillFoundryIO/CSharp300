@@ -4,7 +4,6 @@ namespace CafePOS.Core.Interfaces.Repositories
 {
     public interface IPaymentRepository
     {
-        // PROCESS PAYMENT
         bool OrderHasItems(int orderId);
         void AddTipToOrder(int orderId, decimal tip);
         CafeOrder GetOrderSubtotals(int orderId);

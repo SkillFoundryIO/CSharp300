@@ -1,7 +1,10 @@
-﻿namespace CafePOS.Core.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CafePOS.Core.Entities
 {
     public class CafeOrder
     {
+        [Key]
         public int OrderID { get; set; }
         public DateTime OrderDate { get; set; }
         public decimal? SubTotal { get; set; }

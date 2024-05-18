@@ -24,6 +24,7 @@ namespace CafePOS.Application.Services
                 {
                     return ResultFactory.Fail<Dictionary<string, decimal>>($"No sales data for date {salesDate.Date:d}.");
                 }
+
                 return ResultFactory.Success(sales);
             }
             catch (Exception ex)
@@ -42,6 +43,7 @@ namespace CafePOS.Application.Services
                 {
                     return ResultFactory.Fail<List<OrderItem>>($"No sales data for date {salesDate.Date:d}.");
                 }
+
                 return ResultFactory.Success(sales);
             }
             catch (Exception ex)

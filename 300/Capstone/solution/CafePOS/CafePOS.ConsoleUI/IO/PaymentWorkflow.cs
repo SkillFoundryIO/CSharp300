@@ -9,6 +9,7 @@ namespace CafePOS.ConsoleUI.IO
             OpenOrderWorkflow.ListOpenOrders(openOrderService, false, "Process Payment");
 
             var orderId = Utilities.GetIntZeroOrHigher("\nEnter Order ID (or 0 to cancel): ");
+
             if (orderId == 0)
             {
                 return;
@@ -16,18 +17,22 @@ namespace CafePOS.ConsoleUI.IO
             else
             {
                 var orderResult = openOrderService.IsValidOpenOrder(orderId);
+
                 if (orderResult.Ok)
                 {
                     var hasItemsResult = paymentService.OrderHasItems(orderId);
+
                     if (hasItemsResult.Ok)
                     {
                         DisplayOrderSubtotal(paymentService, orderId);
 
                         var isUnder15 = paymentService.OrderIsUnder15items(orderId);
+
                         if (!isUnder15.Ok)
                         {
                             Utilities.SystemMessageRed(isUnder15.Message);
                         }
+
                         decimal tip = Utilities.GetTipAmount("\nEnter Tip Amount: ");
                         var tipResult = paymentService.AddTipToOrder(orderId, tip);
 
@@ -39,10 +44,12 @@ namespace CafePOS.ConsoleUI.IO
                             DisplayPaymentTypes(paymentService);
 
                             var paymentType = Utilities.GetIntZeroOrHigher("\nEnter Payment ID (or 0 to cancel): ");
+                            
                             if (paymentType == 0)
                             {
                                 return;
                             }
+                            
                             var paymentResult = paymentService.ProcessPayment(orderId, paymentType);
 
                             if (paymentResult.Ok)
@@ -71,6 +78,7 @@ namespace CafePOS.ConsoleUI.IO
                     Utilities.SystemMessageRed(orderResult.Message);
                 }
             }
+
             Utilities.AnyKey();
         }
 
@@ -80,6 +88,7 @@ namespace CafePOS.ConsoleUI.IO
             Utilities.DisplayMenuHeader("Process Payment");
 
             var paymentTypeResults = service.GetPaymentTypes();
+            
             if (paymentTypeResults.Ok)
             {
                 Console.WriteLine("Choose Payment Type: ");
@@ -102,6 +111,7 @@ namespace CafePOS.ConsoleUI.IO
         public static void DisplayOrderSubtotal(IPaymentService service, int orderId)
         {
             var totalsResult = service.GetOrderSubtotals(orderId);
+            
             if (totalsResult.Ok)
             {
                 Console.Clear();
@@ -123,6 +133,7 @@ namespace CafePOS.ConsoleUI.IO
         public static void DisplayFinalOrderTotal(IPaymentService service, int orderId)
         {
             var finalTotal = service.GetFinalTotal(orderId);
+            
             if (finalTotal.Ok)
             {
                 Console.Write($"\nFinal Total for Order# {orderId}: ");

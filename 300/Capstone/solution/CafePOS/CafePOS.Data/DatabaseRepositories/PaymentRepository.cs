@@ -14,13 +14,18 @@ namespace CafePOS.Data.Repositories
 
         public bool OrderHasItems(int orderId)
         {
-            return _dbContext.OrderItem.Any(oi => oi.OrderID == orderId) ? true : false;
+            return _dbContext.OrderItem
+                .Any(oi => oi.OrderID == orderId) ? true : false;
         }
 
         public CafeOrder GetOrderSubtotals(int orderId)
         {
-            var order = _dbContext.CafeOrder.FirstOrDefault(co => co.OrderID == orderId && co.PaymentTypeID == null);
-            var orderItems = _dbContext.OrderItem.Where(ci => ci.OrderID == orderId).ToList();
+            var order = _dbContext.CafeOrder
+                .FirstOrDefault(co => co.OrderID == orderId && co.PaymentTypeID == null);
+            
+            var orderItems = _dbContext.OrderItem
+                .Where(ci => ci.OrderID == orderId)
+                .ToList();
 
             if (orderItems.Count > 0)
             {
@@ -41,12 +46,14 @@ namespace CafePOS.Data.Repositories
 
         public bool IsValidPaymentType(int paymentType)
         {
-            return _dbContext.PaymentType.FirstOrDefault(pt => pt.PaymentTypeID == paymentType) != null ? true : false;
+            return _dbContext.PaymentType
+                .FirstOrDefault(pt => pt.PaymentTypeID == paymentType) != null ? true : false;
         }
 
         public void ProcessPayment(int orderId, int paymentType)
         {
-            var order = _dbContext.CafeOrder.FirstOrDefault(co => co.OrderID == orderId);
+            var order = _dbContext.CafeOrder
+                .FirstOrDefault(co => co.OrderID == orderId);
 
             order.PaymentTypeID = paymentType;
 
@@ -55,7 +62,8 @@ namespace CafePOS.Data.Repositories
 
         public void AddTipToOrder(int orderId, decimal tip)
         {
-            var order = _dbContext.CafeOrder.FirstOrDefault(co => co.OrderID == orderId);
+            var order = _dbContext.CafeOrder
+                .FirstOrDefault(co => co.OrderID == orderId);
 
             order.Tip = tip;
             order.AmountDue = order.SubTotal + order.Tax + order.Tip;
@@ -65,12 +73,14 @@ namespace CafePOS.Data.Repositories
 
         public decimal GetFinalTotal(int orderId)
         {
-            return (decimal)_dbContext.CafeOrder.FirstOrDefault(co => co.OrderID == orderId).AmountDue;
+            return (decimal)_dbContext.CafeOrder
+                .FirstOrDefault(co => co.OrderID == orderId).AmountDue;
         }
 
         public bool IsOrderUnder15Items(int orderId)
         {
-            return _dbContext.OrderItem.Where(oi => oi.OrderID == orderId).Sum(oi => oi.Quantity) < 15 ? true : false;
+            return _dbContext.OrderItem
+                .Where(oi => oi.OrderID == orderId).Sum(oi => oi.Quantity) < 15 ? true : false;
         }
     }
 }

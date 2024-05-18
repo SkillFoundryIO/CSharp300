@@ -21,7 +21,7 @@ namespace CafePOS.ConsoleUI.IO
                 Utilities.SystemMessageGreen($"Sales Report for: {date.Date:d}:\n");
 
                 Console.WriteLine(new string('-', 100));
-                Console.WriteLine($"{"Date",-12} {"Order ID",-10} {"Item name",-20} {"Qty",-10} {"Price",-10} {"Item Total",-15}");
+                Console.WriteLine($"{"Date",-12} {"Order ID",-10} {"Item name",-30} {"Qty",-10} {"Price",-10} {"Item Total",-15}");
                 Console.WriteLine(new string('-', 100));
 
                 int orderId = 0;
@@ -31,38 +31,36 @@ namespace CafePOS.ConsoleUI.IO
 
                 foreach (var r in report.Data)
                 {
-                    if (orderId != r.OrderID)
+                    if (orderId != r.OrderID && orderId != 0)
                     {
-                        if (orderId == 0)
-                        {
-                        }
-                        else
-                        {
-                            Console.WriteLine(new string('-', 100));
-                            Console.WriteLine($"{"",-53} {"Tax ",12} {tax,-15:c}");
-                            Console.WriteLine($"{"",-53} {"Tip ",12} {tip,-15:c}");
-                            Utilities.SystemMessageGreen($"{"",-53} {"Order Total ",12} {orderTotal,-15:c}\n");
+                        Console.WriteLine(new string('-', 100));
+                        Console.WriteLine($"{"",-63} {"Tax ",12} {tax,-15:c}");
+                        Console.WriteLine($"{"",-63} {"Tip ",12} {tip,-15:c}");
+                        Utilities.SystemMessageGreen($"{"",-63} {"Order Total ",12} {orderTotal,-15:c}\n");
 
-                            Console.WriteLine(new string('-', 100));
-                            Console.WriteLine($"{"Date",-12} {"Order ID",-10} {"Item name",-20} {"Qty",-10} {"Price",-10} {"Item Total",-15}");
-                            Console.WriteLine(new string('-', 100));
-                        }
-
+                        Console.WriteLine(new string('-', 100));
+                        Console.WriteLine($"{"Date",-12} {"Order ID",-10} {"Item name",-30} {"Qty",-10} {"Price",-10} {"Item Total",-15}");
+                        Console.WriteLine(new string('-', 100));
                     }
-                    Console.WriteLine($"{r.CafeOrder.OrderDate,-12:d} {r.OrderID,-10} {r.ItemPrice.Item.ItemName,-20:c} {r.Quantity,-10} {r.ItemPrice.Price,-10:c} {r.ExtendedPrice,-15:c}");
+
+                    Console.WriteLine($"{r.CafeOrder.OrderDate,-12:d} {r.OrderID,-10} {r.ItemPrice.Item.ItemName,-30:c} {r.Quantity,-10} {r.ItemPrice.Price,-10:c} {r.ExtendedPrice,-15:c}");
+                    
                     orderId = r.OrderID;
 
                     if (r.CafeOrder.Tax != null)
                         tax = (decimal)r.CafeOrder.Tax;
+
                     if (r.CafeOrder.Tip != null)
                         tip = (decimal)r.CafeOrder.Tip;
+
                     if (r.CafeOrder.AmountDue != null)
                         orderTotal = (decimal)r.CafeOrder.AmountDue;
                 }
+
                 Console.WriteLine(new string('-', 100));
-                Console.WriteLine($"{"",-53} {"Tax ",12} {tax,-15:c}");
-                Console.WriteLine($"{"",-53} {"Tip ",12} {tip,-15:c}");
-                Utilities.SystemMessageGreen($"{"",-53} {"Order Total ",12} {orderTotal,-15:c}\n");
+                Console.WriteLine($"{"",-63} {"Tax ",12} {tax,-15:c}");
+                Console.WriteLine($"{"",-63} {"Tip ",12} {tip,-15:c}");
+                Utilities.SystemMessageGreen($"{"",-63} {"Order Total ",12} {orderTotal,-15:c}\n");
             }
             else
             {
@@ -100,7 +98,7 @@ namespace CafePOS.ConsoleUI.IO
                     Console.WriteLine($"{r.Key,-20} {r.Value,-15:c}");
                     grandTotal += r.Value;
                 }
-                
+
                 Console.WriteLine(new string('-', 100));
                 Console.WriteLine($"{"Grand Total: ",20} {grandTotal,-15:c}");
                 Console.WriteLine(new string('-', 100));

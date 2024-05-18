@@ -5,11 +5,14 @@ namespace CafePOS.ConsoleUI.IO
 {
     public class OpenOrderWorkflow
     {
+        private static string _headerTitle = "Add Items to Open Order";
+
         public static void AddItemsToOrder(IOrderService service)
         {
             List<ItemToAdd> itemsAddedToOrder = new List<ItemToAdd>();
 
-            bool haveOpenOrders = ListOpenOrders(service, false, "Add Items to Open Order");
+            bool haveOpenOrders = ListOpenOrders(service, false, _headerTitle);
+
             if (!haveOpenOrders)
             {
                 Utilities.AnyKey();
@@ -20,10 +23,10 @@ namespace CafePOS.ConsoleUI.IO
 
             do
             {
-                Utilities.DisplayMenuHeader("Add Items to Open Order");
+                Utilities.DisplayMenuHeader(_headerTitle);
 
                 int categoryId = ListandSelectCategory(service);
-                // add loop here
+               
                 GetAvailableItemsByCategory(service, categoryId);
 
                 ItemToAdd orderedItem = new ItemToAdd();
@@ -64,6 +67,7 @@ namespace CafePOS.ConsoleUI.IO
             {
                 Utilities.SystemMessageRed(addItemResult.Message);
             }
+
             Utilities.AnyKey();
         }
 
@@ -74,7 +78,9 @@ namespace CafePOS.ConsoleUI.IO
             if (listResult.Ok)
             {
                 Console.Clear();
-                Console.WriteLine("Available Items: ");
+                Utilities.DisplayMenuHeader(_headerTitle);
+                Console.WriteLine("Available Items");
+                Console.WriteLine(new string('-', 50));
                 Console.WriteLine($"{"Item ID",-10} {"Item Name",-30} {"Price",-5}");
                 Console.WriteLine(new string('-', 50));
 
@@ -94,6 +100,7 @@ namespace CafePOS.ConsoleUI.IO
             Utilities.DisplayMenuHeader(title);
 
             var list = service.GetOpenOrders();
+
             if (list.Ok)
             {
                 Console.WriteLine($"{"Order ID",-10}  {"Order Date",-15}  {"Server Name",-20}");
@@ -107,7 +114,9 @@ namespace CafePOS.ConsoleUI.IO
                 if (viewDetails)
                 {
                     Console.WriteLine();
+
                     var input = Utilities.GetIntZeroOrHigher("Enter Order ID to view order details (or 0 to Quit): ");
+
                     if (input == 0)
                     {
                         return false;
@@ -118,6 +127,7 @@ namespace CafePOS.ConsoleUI.IO
             else
             {
                 Utilities.SystemMessageRed(list.Message);
+
                 return false;
             }
             return true;
@@ -144,10 +154,15 @@ namespace CafePOS.ConsoleUI.IO
         public static int ListandSelectCategory(IOrderService service)
         {
             Console.Clear();
+
             var categories = service.GetCategories();
+            
             if (categories.Ok)
             {
-                Console.WriteLine($"{"Category ID",-5} {"Category Name",-20}");
+                Utilities.DisplayMenuHeader(_headerTitle);
+                Console.WriteLine("Available Categories");
+                Console.WriteLine(new string('-', 30));
+                Console.WriteLine($"{"ID",-5} {"Category Name",-20}");
                 Console.WriteLine(new string('-', 30));
 
                 foreach (var category in categories.Data)
@@ -172,9 +187,9 @@ namespace CafePOS.ConsoleUI.IO
             {
                 Utilities.DisplayMenuHeader($"Order Details");
 
-                Console.WriteLine($"Order Details for Order {orderId}:\n");
+                Console.WriteLine($"Order Details for Order {orderId}");
+                Console.WriteLine(new string('-', 50));
                 Console.WriteLine($"{"Item Name",-20} {"Qty",-5} {"Extended Price",-8}");
-
                 Console.WriteLine(new string('-', 50));
 
                 foreach (var d in details.Data)
