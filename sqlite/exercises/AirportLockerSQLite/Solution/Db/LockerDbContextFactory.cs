@@ -4,9 +4,10 @@ namespace AirportLockerSQLite.Db;
 
 public class LockerDbContextFactory
 {
-    public static LockerDbContext CreateDbContext(string connectionString)
+    public static LockerDbContext CreateDbContext(
+        string connectionString)
     {
-        // Instead of overriding in the DbContext we can extract the options settings
+        // We can extract the options settings into an object
         var options = new DbContextOptionsBuilder<LockerDbContext>()
             .UseSqlite(connectionString)
             .Options;

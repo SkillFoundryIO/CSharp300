@@ -7,11 +7,17 @@ var configBuilder = new ConfigurationBuilder()
 
 var settings = new Settings();
 
-settings.ConnectionString = configBuilder["ConnectionStrings:LockerDb"] ?? null;
-settings.PassPhrase = configBuilder["Security:PassPhrase"] ?? null;
-settings.LockerCapacity = int.Parse(configBuilder["LockerCapacity"]);
+settings.ConnectionString = 
+    configBuilder["ConnectionStrings:LockerDb"] ?? null;
 
-if (string.IsNullOrEmpty(settings.ConnectionString) || string.IsNullOrEmpty(settings.PassPhrase))
+settings.PassPhrase = 
+    configBuilder["Security:PassPhrase"] ?? null;
+
+settings.LockerCapacity = 
+    int.Parse(configBuilder["LockerCapacity"]);
+
+if (string.IsNullOrEmpty(settings.ConnectionString) || 
+    string.IsNullOrEmpty(settings.PassPhrase))
 {
     throw new Exception("Invalid User Secrets Configuration");
 }
