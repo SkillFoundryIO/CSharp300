@@ -18,8 +18,7 @@ CREATE TABLE Borrower (
     FirstName NVARCHAR(15) NOT NULL,
     LastName NVARCHAR(15) NOT NULL,
     Email NVARCHAR(50) NOT NULL,
-    Phone NVARCHAR(10) NOT NULL,
-    DoB DATE NOT NULL
+    Phone NVARCHAR(10) NOT NULL
 );
 GO
 
