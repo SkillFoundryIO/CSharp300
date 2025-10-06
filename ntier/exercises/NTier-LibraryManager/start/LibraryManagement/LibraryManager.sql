@@ -59,13 +59,13 @@ VALUES
     ('DVD'), 
     ('Digital Audio');
 
-INSERT INTO Borrower (FirstName, LastName, Email, Phone, DoB) 
+INSERT INTO Borrower (FirstName, LastName, Email, Phone) 
 VALUES 
-    ('John', 'Doe', 'john.doe@example.com', '1234567890', '1980-01-01'),
-    ('Jane', 'Smith', 'jane.smith@example.com', '2345678901', '1990-02-02'),
-    ('Alice', 'Johnson', 'alice.johnson@example.com', '3456789012', '1985-03-03'),
-    ('Bob', 'Williams', 'bob.williams@example.com', '4567890123', '1975-04-04'),
-    ('Emily', 'Brown', 'emily.brown@example.com', '5678901234', '1995-05-05');
+    ('John', 'Doe', 'john.doe@example.com', '1234567890'),
+    ('Jane', 'Smith', 'jane.smith@example.com', '2345678901'),
+    ('Alice', 'Johnson', 'alice.johnson@example.com', '3456789012'),
+    ('Bob', 'Williams', 'bob.williams@example.com', '4567890123'),
+    ('Emily', 'Brown', 'emily.brown@example.com', '5678901234');
 
 INSERT INTO Media (MediaTypeID, Title) 
 VALUES 
